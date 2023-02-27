@@ -14,7 +14,10 @@ public class Workshop11Application {
 	
 	public static void main(String[] args) {
 		
-		
+		//mvn clean spring-boot:run -Dspring-boot.run.arguments=--port=5051
+		//mvn clean spring-boot:run -Dspring-boot.run.arguments=--Dport=5055
+		// jar -jar target/workshop11-0.0.1-SNAPSHOT.jar --port=5055
+		// jar -jar target/workshop11-0.0.1-SNAPSHOT.jar --Dport=5055
 		for(String argVal: args){
 			System.out.println("argVal > " +  argVal);
 			if(argVal.contains("--Dport=") || argVal.contains("--port=")){
@@ -24,18 +27,24 @@ public class Workshop11Application {
 			}
 		}
 
+		//mvn clean spring-boot:run -Dspring-boot.run.arguments=--port=5050
 		ApplicationArguments appArgs = new DefaultApplicationArguments(args);
 		if (appArgs.containsOption("port")){
 			System.out.println("contains");
 			portNumber = appArgs.getOptionValues("port").get(0);
 		}
-		
+
+		// export PORT=xxxx
+		// mvn spring-boot:run
 		if(portNumber  == null){
 			portNumber = System.getenv("PORT");
 			System.out.println("env portNumber > " +  portNumber);
 		}
 
-		if(portNumber == null | portNumber.isBlank()){
+		// unset PORT
+		// export PORT= or set PORT=
+		// mvn spring-boot:run
+		if(portNumber == null ||  portNumber.isBlank()){
 			portNumber = DEFAULT_PORTNUM;
 		}
 		SpringApplication app = 
