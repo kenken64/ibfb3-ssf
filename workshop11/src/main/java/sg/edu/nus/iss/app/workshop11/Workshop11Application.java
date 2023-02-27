@@ -16,8 +16,8 @@ public class Workshop11Application {
 		
 		//mvn clean spring-boot:run -Dspring-boot.run.arguments=--port=5051
 		//mvn clean spring-boot:run -Dspring-boot.run.arguments=--Dport=5055
-		// jar -jar target/workshop11-0.0.1-SNAPSHOT.jar --port=5055
-		// jar -jar target/workshop11-0.0.1-SNAPSHOT.jar --Dport=5055
+		// java -jar target/workshop11-0.0.1-SNAPSHOT.jar --port=5055
+		// java -jar target/workshop11-0.0.1-SNAPSHOT.jar --Dport=5055
 		for(String argVal: args){
 			System.out.println("argVal > " +  argVal);
 			if(argVal.contains("--Dport=") || argVal.contains("--port=")){
