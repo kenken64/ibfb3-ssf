@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>How many numbers, do you wish to generate!</h1>
+    <form
+        action="#"
+        th:action="@{/rand/generate}"
+        th:object="${generateObj}"
+        method="GET">
+        <p>
+            <input type="text" th:field="*{numberVal}"/>
+            <input type="submit" value="Generate"/>
+        </p>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 data-th-text="${kenneth}"></h1>
+    <h2 data-th-text="${name}"></h2>
+    <h2 data-th-text="${currHour}"></h2>
+
+    <div data-th-if="${currHour le 12}">
+        <span>Good Morning</span>
+    </div>
+    <div data-th-if="${currHour gt 12}">
+        <span>Good Afternoon</span>
+    </div>
+
+    <table>
+        <tr data-th-each="numval : ${listOfNum}">
+            <td data-th-text="${numval}">    
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
