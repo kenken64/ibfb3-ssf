@@ -60,13 +60,12 @@ public class GenerateRandController {
                 uniqueResult.add(randNumberVal);
         }
 
-        Iterator<Integer> i = uniqueResult.iterator();
         Integer currElem = null;
-        while(i.hasNext()){
-            currElem = i.next();
+        for (Iterator iter = uniqueResult.iterator(); iter.hasNext();){
+            currElem = (Integer)iter.next();
             selectedImg.add(imgNumbers[currElem.intValue()]);
         }
-
+        
         m.addAttribute("numberRandomNum", noOfGenerateNo);
         m.addAttribute("randNumResult", selectedImg.toArray());
         
