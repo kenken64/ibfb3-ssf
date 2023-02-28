@@ -41,16 +41,16 @@ public class GenerateRandController {
     }
 
     private void randomizerNum(Model m, int noOfGenerateNo){
-        int maxGenNo = 30;
-        String[] imgNumbers = new String[maxGenNo+1];
+        int maxGenNo = 31;
+        String[] imgNumbers = new String[maxGenNo];
         if(noOfGenerateNo < 1 || noOfGenerateNo > maxGenNo){
             throw new RandNoException();
         }
 
-        for(int x = 0; x < maxGenNo -1; x++){
+        for(int x = 0; x < maxGenNo; x++){
             imgNumbers[x] = "number" + x + ".jpg";
         }
-
+        
         List<String> selectedImg = new ArrayList<String>();
         Random rand = new Random();
         Set<Integer> uniqueResult = new LinkedHashSet<Integer>();
