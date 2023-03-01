@@ -73,7 +73,7 @@ public class Contacts {
         model.addAttribute("contacts", dataFiles);
     }
 
-    public Set<String> listFiles(String dir){
+    private Set<String> listFiles(String dir){
         return Stream.of(new File(dir).listFiles())
             .filter(file -> !file.isDirectory())
             .map(File::getName)
@@ -96,4 +96,6 @@ public class Contacts {
 
         return dataDirResult;
     }
+
+    
 }

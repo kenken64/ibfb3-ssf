@@ -9,10 +9,10 @@
 <body>
     <h1>List of Contacts</h1>
     <table>
-        <tr data-th-each="contact : ${contacts}">
+        <tr data-th-each="contactid : ${contacts}">
             <td>
-                <a data-th-href="@{'/contact/' + ${contact}}"
-                data-th-text="${contact}"
+                <a data-th-href="@{'/contact/' + ${contactid}}"
+                data-th-text="${contactid}"
                 />
             </td>
         </tr>
