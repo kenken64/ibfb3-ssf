@@ -43,7 +43,7 @@ public class GenerateRandController {
     private void randomizerNum(Model m, int noOfGenerateNo){
         int maxGenNo = 31;
         String[] imgNumbers = new String[maxGenNo];
-        if(noOfGenerateNo < 1 || noOfGenerateNo > maxGenNo){
+        if(noOfGenerateNo < 1 || noOfGenerateNo > maxGenNo-1){
             throw new RandNoException();
         }
 
