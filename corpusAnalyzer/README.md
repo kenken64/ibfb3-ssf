@@ -41,3 +41,9 @@ I sought the LORD, and He answered me and delivered me from all my fears. Those 
 "He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away." And He who was seated on the throne said, "Behold, I am making all things new."
 Humble yourselves, therefore, under the mighty hand of God so that at the proper time He may exalt you, casting all your anxieties on Him, because He cares for you.
 ```
+
+```
+“He created the heavens and earth in truth and formed you and perfected your forms; and to Him is the [final] destination”
+“So verily, with the hardship, there is a relief. Verily, with the hardship, there is relief”
+“And whoever relies upon Allah – then He is sufficient for him. Indeed, Allah will accomplish His purpose. Allah has already set for everything a [decreed] extent” 
+```
