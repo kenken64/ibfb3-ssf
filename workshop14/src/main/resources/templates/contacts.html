@@ -4,18 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      
     <title>Document</title>
 </head>
 <body>
-    <h1>List of Contacts</h1>
-    <table>
-        <tr data-th-each="contact : ${contacts}">
+    <nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Address book</a>
+    </div>
+    </nav>
+    <h2>List of contacts</h2>
+    <br>
+    <table class="collection" border=1>
+        <tr>
+            <td> Id </td>
+            <td >Name</td>
+            <td >Email</td>
+            <td >Phone Number</td>
+            <td >Date of Birth</td>
+        </tr>
+        <tr data-th-each="contact :${contacts}">
             <td>
                 <a data-th-href="@{'/contact/' + ${contact.id}}"
                 data-th-text="${contact.id}"
                 />
             </td>
+            <td data-th-text="${contact.name}"></td>
+            <td data-th-text="${contact.email}"></td>
+            <td data-th-text="${contact.phoneNumber}"></td>
+            <td data-th-text="${contact.dateOfBirth}"></td>
         </tr>
     </table>
 </body>
 </html>
+
+
+<!-- <a data-th-href="@{'/contact/' + ${contact.id}}"
+                data-th-text="${contact.id}"
+                /> -->

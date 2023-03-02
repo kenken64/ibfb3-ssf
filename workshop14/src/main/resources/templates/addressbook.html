@@ -1,77 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
     <style>
-        .error {
-            color: red;
-        }
+      .error {
+        color: red;
+      }
     </style>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+             
     <title>Address Book</title>
-</head>
-<body>
-    <h1>Your contact information</h1>
-    <form action="#"
-    data-th-action="@{/contact}"
-    data-th-object="${contact}"
-    method="post"
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Address book</a>
+      </div>
+    </nav>
+
+    <div class="row">
+      <form
+      action="#"
+      data-th-action="@{/contact}"
+      data-th-object="${contact}"
+      method="post"
+      class="col s12"
     >
-    <p>
-        Name:
-        <input type="text" data-th-field="*{name}"/>
-        <br/>
-        <span 
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" data-th-field="*{name}" class="validate"/>
+          <label for="name">Name</label>
+          <span
             class="error"
             data-th-if="${#fields.hasErrors('name')}"
             data-th-errors="*{name}"
-        ></span>
-    </p>
-    <br/>
-    <p>
-        Email:
-        <input type="text" data-th-field="*{email}"/>
-        <br/>
-        <span 
+          ></span>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" data-th-field="*{email}" class="validate"/>
+          <label for="email">Email</label>
+          <span
             class="error"
             data-th-if="${#fields.hasErrors('email')}"
             data-th-errors="*{email}"
-        ></span>
-    </p>
-    <br/>
-    <p>
-        Phone Number:
-        <input type="text" data-th-field="*{phoneNumber}"/>
-        <br/>
-        <span 
+          ></span>
+        </div>
+      </div>
+      <div class="row">
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" data-th-field="*{phoneNumber}" class="validate"/>
+          <label for="phoneNumber">Phone Number</label>
+          <span
             class="error"
             data-th-if="${#fields.hasErrors('phoneNumber')}"
             data-th-errors="*{phoneNumber}"
-        ></span>
-    </p>
-    <br/>
-    <p>
-        Date of Birth:
-        <input type="date" data-th-field="*{dateOfBirth}"/>
-        <br/>
-        <span 
+          ></span>
+        </div>
+        <div class="input-field col s6">
+          <input type="date" data-th-field="*{dateOfBirth}" class="validate"/>
+          <label for="dateOfBirth">Date of Birth</label>
+          <span
             class="error"
             data-th-if="${#fields.hasErrors('dateOfBirth')}"
             data-th-errors="*{dateOfBirth}"
-        ></span>
-        <br/>
-        <span 
+          ></span>
+          <br />
+          <span
             class="error"
             data-th-if="${#fields.hasErrors('age')}"
             data-th-errors="*{age}"
-        ></span>
-    </p>
-    <br/>
-    <p>
-        <input type="submit" value="Save"/>
-    </p>
+          ></span>
+        </div>
+      </div>
+      <div class="row">
 
+      <div class="col s6">
+      &nbsp;&nbsp;&nbsp;<button class="btn waves-effect waves-light" type="submit" name="action">Save
+      </button>
+      </div>
+      </div>
     </form>
-</body>
+  </div>
+        
+    
+    
+  </body>
 </html>

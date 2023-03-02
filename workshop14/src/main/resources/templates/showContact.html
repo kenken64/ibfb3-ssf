@@ -4,37 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
     <title>Document</title>
 </head>
-<body >
-    <h1>Your contact information</h1>
-    <div data-th-object="${contact}">
-        <p>
-            id:
-            <p data-th-text="*{id}"></p>
-        </p>
-        <br/>
-        <p>
-            Name:
-            <p data-th-text="*{name}"></p>
-        </p>
-        <br/>
-        <p>
-            Email:
-            <p data-th-text="*{email}"></p>
-        </p>
-        <br/>
-        <p>
-            Phone Number :
-            <p data-th-text="*{phoneNumber}"></p>
-        </p>
-        <br/>
-        <p>
-            Date of Birth:
-            <p data-th-text="*{dateOfBirth}"></p>
-        </p>
-        <br/>
-    </div>
-    
+<body data-th-object="${contact}">
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Address book</a>
+        </div>
+    </nav>
+    <div class="col s12 m7">
+        <h2 class="header">Your contact information</h2>
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+                <p>Contact id</p>
+                <p data-th-text="*{id}"></p>
+                <br>
+                <p>Name</p>
+                <p data-th-text="*{name}"></p>
+                <br>
+                <p>Email</p>
+                <p data-th-text="*{email}"></p>
+                <br>
+                <p>Phone No.</p>
+                <p data-th-text="*{phoneNumber}"></p>
+                <br>
+                <p>Date of Birth</p>
+                <p data-th-text="*{dateOfBirth}"></p>
+                <br>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
