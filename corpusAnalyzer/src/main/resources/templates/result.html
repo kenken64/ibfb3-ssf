@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      
+    <style>
+        textarea {
+        width: 300px;
+        height: 150px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <form action="/analyze" method="get">
+        <p>
+            Text:
+            <textarea row=40 col=40 name="para"></textarea>
+        </p>
+        <br>
+        <input type="submit" value="Analyze"/>
+    </form>
+
+    <table class="collection" border=1>
+        <tr>
+            <td>Word</td>
+            <td>Next Word</td>
+            <td>Count</td>
+        </tr>
+        <tr data-th-each="w: ${wordcount}" data-th-object="${w}">
+            <td data-th-text="*{word}"></td>
+            <td data-th-text="*{nextWord}"></td>
+            <td data-th-text="*{count}"></td>
+        </tr>
+        
+    </table>
+</body>
+</html>

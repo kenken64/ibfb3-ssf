@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.app.corpusAnalyzer.controller;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import sg.edu.nus.iss.app.corpusAnalyzer.model.Corpus;
 import sg.edu.nus.iss.app.corpusAnalyzer.service.CorpusTextService;
 
 @Controller
@@ -19,16 +22,22 @@ public class CorpusTextController {
     private CorpusTextService cSvc;
 
     @GetMapping()
-    public String analyze(Model model, @RequestParam String para){
-        System.out.println(para);
-        String wordForDistribution = "If you";
+    public String analyze(Model model, @RequestParam(defaultValue="") String para){
+        List<Corpus> ca = new LinkedList<>();
         cSvc.analyze(para);
-        Map<String, Double> distribution = cSvc.getNextWordDistribution(wordForDistribution);
-        System.out.println("The word \"" + wordForDistribution + "\" is followed by the following words with the following probabilities:");
-        for (String nextWord : distribution.keySet()) {
-           double probability = distribution.get(nextWord);
-           System.out.println("- \"" + nextWord + "\": " + probability);
+        List<String> ll  = cSvc.getListOfCurrentNextWord();
+        for(String wordToCount : ll){
+            int count = cSvc.getWordCount(wordToCount);
+            System.out.println("The word \"" + wordToCount + "\" appears " 
+                    + count + " times in the corpus.");
+            String[] splitWords = wordToCount.split(" ");
+            Corpus c = new Corpus();
+            c.setWord(splitWords[0]);
+            c.setNextWord(splitWords[1]);
+            c.setCount(count);
+            ca.add(c);
         }
+        model.addAttribute("wordcount", ca);
         return "result";
     }
 

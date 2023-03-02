@@ -51,6 +51,13 @@
 			<artifactId>jedis</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mmnaseri.utils/spring-data-mock -->
+		<dependency>
+			<groupId>com.mmnaseri.utils</groupId>
+			<artifactId>spring-data-mock</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+
 
 	</dependencies>
 

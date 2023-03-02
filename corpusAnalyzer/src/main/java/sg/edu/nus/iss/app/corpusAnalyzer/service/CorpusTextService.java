@@ -1,57 +1,54 @@
 package sg.edu.nus.iss.app.corpusAnalyzer.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class CorpusTextService {
     private Map<String, Integer> wordCounts;
-    private Map<String, List<String>> nextWords;
+    private List<String> combiWords;
     
     public CorpusTextService() {
         wordCounts = new HashMap<>();
-        nextWords = new HashMap<>();
+        combiWords = new LinkedList<>();
+    }
+
+    private String[] getCleanText(String text){
+        String cleanedText = Arrays.stream(text.split("\\s+"))
+                            .map(word -> word.replaceAll("[!.,':;\\-\"?]+", ""))
+                           .filter(word -> !word.isEmpty())
+                           .collect(Collectors.joining(" "));
+        System.out.println("cleanedText > " + cleanedText);
+        String[] words = cleanedText.split("\\s+");
+        return words;
+    }
+
+    public List<String> getListOfCurrentNextWord(){
+        return combiWords;
     }
 
     public void analyze(String text){
-        String[] words = text.split("\\s+");
+        String[] words = this.getCleanText(text);
         for (int i = 0; i < words.length; i++) {
-            String currentWord = words[i];
-            if (i < words.length - 1) {
-                String nextWord = words[i+1];
-                if (!nextWords.containsKey(currentWord)) {
-                    nextWords.put(currentWord, new ArrayList<>());
-                }
-                nextWords.get(currentWord).add(nextWord);
+            try{
+                String currentWord = words[i] + " " + words[i+1];
+                combiWords.add(currentWord);
+                wordCounts.put(currentWord, wordCounts.getOrDefault(currentWord, 0) + 1);
+            }catch(ArrayIndexOutOfBoundsException e){
+                System.err.println(e.getMessage());
             }
-            wordCounts.put(currentWord, wordCounts.getOrDefault(currentWord, 0) + 1);
+            
         }
     }
 
     public int getWordCount(String word) {
         return wordCounts.getOrDefault(word, 0);
-    }
-
-    public List<String> getNextWords(String word) {
-        return nextWords.getOrDefault(word, new ArrayList<>());
-    }
-
-    public Map<String, Double> getNextWordDistribution(String word) {
-        Map<String, Double> distribution = new HashMap<>();
-        List<String> possibleNextWords = getNextWords(word);
-        int totalPossibleNextWords = possibleNextWords.size();
-        if (totalPossibleNextWords == 0) {
-            return distribution;
-        }
-        for (String nextWord : possibleNextWords) {
-            int nextWordCount = getWordCount(nextWord);
-            double probability = (double) nextWordCount / totalPossibleNextWords;
-            distribution.put(nextWord, probability);
-        }
-        return distribution;
     }
 }

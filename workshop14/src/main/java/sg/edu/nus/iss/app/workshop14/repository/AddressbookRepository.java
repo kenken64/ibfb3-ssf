@@ -16,12 +16,13 @@ public class AddressbookRepository {
 
     private static final String CONTACT_LIST = "contactlist";
 
-    public void save(final Contact ctc){
+    public Contact save(final Contact ctc){
+        System.out.println(ctc.getDateOfBirth());
         redisTemplate.opsForList()
                 .leftPush(CONTACT_LIST, ctc.getId());
         redisTemplate.opsForHash()
             .put(CONTACT_LIST + "_Map", ctc.getId(), ctc);
-
+        return findById(ctc.getId());
     }
 
     public Contact findById(final String contactId){
