@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.app.workshop14.repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -39,7 +40,7 @@ public class AddressbookRepository {
             .stream()
             .filter(Contact.class::isInstance)
             .map(Contact.class::cast)
-            .toList();
+            .collect(Collectors.toList());
 
         return ctcs;
     }
