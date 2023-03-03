@@ -23,5 +23,4 @@ public class CorpusRepository {
                     String.valueOf(c.getCount()));
         }
     }
-
 }

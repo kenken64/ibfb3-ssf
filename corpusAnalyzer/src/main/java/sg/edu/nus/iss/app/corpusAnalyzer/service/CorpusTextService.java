@@ -59,7 +59,6 @@ public class CorpusTextService {
                 String currentWord = words[i].toLowerCase() + " " + words[i+1].toLowerCase();
                 String trimmedCurrentWord = currentWord.trim();
                 combiWords.add(trimmedCurrentWord);
-                System.out.println(trimmedCurrentWord);
                 wordCounts.put(trimmedCurrentWord, wordCounts.getOrDefault(trimmedCurrentWord, 0) + 1);
             }catch(ArrayIndexOutOfBoundsException e){
                 System.err.println(e.getMessage());
