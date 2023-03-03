@@ -1,6 +1,10 @@
 package sg.edu.nus.iss.app.corpusAnalyzer.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +26,7 @@ public class CorpusTextController {
     @GetMapping()
     public String analyze(Model model, @RequestParam(defaultValue="") String para){
         cSvc.analyze(para);
-        List<Corpus> ll  = cSvc.getListOfCurrentNextWord();
+        Map<String, List<Corpus>> ll  = cSvc.getListOfCurrentNextWord();
         model.addAttribute("wordcountList", ll);
         return "result";
     }

@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.app.corpusAnalyzer.service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -33,8 +34,10 @@ public class CorpusTextService {
         return words;
     }
 
-    public List<Corpus> getListOfCurrentNextWord(){
+    public Map<String, List<Corpus>> getListOfCurrentNextWord(){
         List<Corpus> ca = new LinkedList<>();
+        Map<String, List<Corpus>> displayResult = new HashMap<>();
+        
         for(String wordToCount : combiWords){
             int count = getWordCount(wordToCount);
             System.out.println("The word \"" + wordToCount + "\" appears " 
@@ -46,8 +49,27 @@ public class CorpusTextService {
             c.setCount(count);
             ca.add(c);
         }
+        for(Corpus c : ca){
+            if(!displayResult.containsKey(c.getWord())){
+                Corpus cc = new Corpus();
+                cc.setNextWord(c.getNextWord());
+                cc.setCount(c.getCount());
+                List<Corpus> arrMap = new LinkedList<>();
+                arrMap.add(cc);
+                displayResult.put(c.getWord(), arrMap);
+            }else{
+                Corpus cc = new Corpus();
+                cc.setNextWord(c.getNextWord());
+                cc.setCount(c.getCount());
+                List<Corpus> mr = displayResult.get(c.getWord());
+                mr.add(cc);
+                displayResult.put(c.getWord(),mr);
+            }
+            
+        }
+        System.out.println(displayResult);
         cRepo.saveCorpusResult(ca);
-        return ca;
+        return displayResult;
     }
 
     public void analyze(String text){

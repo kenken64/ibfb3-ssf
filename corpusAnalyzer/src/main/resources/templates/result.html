@@ -44,9 +44,18 @@
                 </thead>
                 <tbody>
                 <tr data-th-each="w: ${wordcountList}" data-th-object="${w}">
-                    <td data-th-text="*{word}"></td>
-                    <td data-th-text="*{nextWord}"></td>
-                    <td data-th-text="*{count}"></td>
+                    <td data-th-text="*{key}"></td>
+                    <td colspan="2">
+                        <table >
+                            <tbody>
+                                <tr data-th-each="w2: *{value}">
+                                    <td data-th-text="${w2.nextWord}"></td>
+                                    <td data-th-text="${w2.count}" style="text-align:right;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                   
                 </tr>
                 </tbody>
             </table>
