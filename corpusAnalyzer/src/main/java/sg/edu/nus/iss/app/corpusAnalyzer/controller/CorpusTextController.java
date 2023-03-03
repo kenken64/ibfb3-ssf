@@ -23,21 +23,9 @@ public class CorpusTextController {
 
     @GetMapping()
     public String analyze(Model model, @RequestParam(defaultValue="") String para){
-        List<Corpus> ca = new LinkedList<>();
         cSvc.analyze(para);
-        List<String> ll  = cSvc.getListOfCurrentNextWord();
-        for(String wordToCount : ll){
-            int count = cSvc.getWordCount(wordToCount);
-            System.out.println("The word \"" + wordToCount + "\" appears " 
-                    + count + " times in the corpus.");
-            String[] splitWords = wordToCount.split(" ");
-            Corpus c = new Corpus();
-            c.setWord(splitWords[0]);
-            c.setNextWord(splitWords[1]);
-            c.setCount(count);
-            ca.add(c);
-        }
-        model.addAttribute("wordcount", ca);
+        List<Corpus> ll  = cSvc.getListOfCurrentNextWord();
+        model.addAttribute("wordcountList", ll);
         return "result";
     }
 

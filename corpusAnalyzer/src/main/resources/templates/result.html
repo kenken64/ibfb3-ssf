@@ -19,27 +19,39 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/analyze" method="get">
-        <p>
-            Text:
-            <textarea row=40 col=40 name="para"></textarea>
-        </p>
-        <br>
-        <input type="submit" value="Analyze"/>
-    </form>
-
-    <table class="collection" border=1>
-        <tr>
-            <td>Word</td>
-            <td>Next Word</td>
-            <td>Count</td>
-        </tr>
-        <tr data-th-each="w: ${wordcount}" data-th-object="${w}">
-            <td data-th-text="*{word}"></td>
-            <td data-th-text="*{nextWord}"></td>
-            <td data-th-text="*{count}"></td>
-        </tr>
+    <div class="row">
+        <div class="grid-example col s12">
+            <form class="col s12" action="/analyze" method="get">
+                <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="para" name="para" class="materialize-textarea"></textarea>
+                      <label for="para">Your text</label>
+                    </div>
+                  </div>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Analyze
+                    <i class="material-icons right"></i>
+                </button>
+            </form>
         
-    </table>
+            <table class="collection striped">
+                <thead>
+                <tr>
+                    <td>Word</td>
+                    <td>Next Word</td>
+                    <td>Count</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="w: ${wordcountList}" data-th-object="${w}">
+                    <td data-th-text="*{word}"></td>
+                    <td data-th-text="*{nextWord}"></td>
+                    <td data-th-text="*{count}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
 </body>
 </html>
