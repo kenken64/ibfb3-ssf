@@ -9,20 +9,20 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sg.edu.nus.iss.app.corpusAnalyzer.model.Corpus;
+import sg.edu.nus.iss.app.corpusAnalyzer.repository.CorpusRepository;
 
 @Service
 public class CorpusTextService {
+    @Autowired
+    private CorpusRepository cRepo;
+
     private Map<String, Integer> wordCounts;
     private Set<String> combiWords;
     
-    public CorpusTextService() {
-        wordCounts = new HashMap<>();
-        combiWords = new LinkedHashSet<>();
-    }
-
     private String[] getCleanText(String text){
         String cleanedText = Arrays.stream(text.split("\\s+"))
                             .map(word -> word.replaceAll("[!.,':;\\-\"?]+", ""))
@@ -46,10 +46,13 @@ public class CorpusTextService {
             c.setCount(count);
             ca.add(c);
         }
+        cRepo.saveCorpusResult(ca);
         return ca;
     }
 
     public void analyze(String text){
+        wordCounts = new HashMap<>();
+        combiWords = new LinkedHashSet<>();
         String[] words = this.getCleanText(text);
         for (int i = 0; i < words.length; i++) {
             try{
