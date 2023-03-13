@@ -10,7 +10,6 @@ import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonValue;
 
 public class Pegs implements Serializable{
     private int total_count;
@@ -40,7 +39,7 @@ public class Pegs implements Serializable{
             arrBuilder.add(x);
 
         return Json.createObjectBuilder()
-            .add("total_cnt", this.getTotal_count())
+            .add("total_count", this.getTotal_count())
             .add("types", arrBuilder);
     }
 

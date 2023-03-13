@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.workshop16.repository;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,5 +21,14 @@ public class BoardGameRepo {
             return 1;
         }
         return 0;
+    }
+
+    public Mastermind findById(final String msId) 
+        throws IOException{
+        String jsonStrVal = (String)template
+                                .opsForValue()
+                                .get(msId);
+        Mastermind m = Mastermind.create(jsonStrVal);
+        return m;
     }
 }
