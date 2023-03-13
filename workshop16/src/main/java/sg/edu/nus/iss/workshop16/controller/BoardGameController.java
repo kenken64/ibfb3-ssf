@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.iss.workshop16.model.Mastermind;
@@ -59,5 +61,32 @@ public class BoardGameController {
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(ms.toJSON().toString());
+    }
+
+    @PutMapping(path="{msId}")
+    public ResponseEntity<String> updateBoardGame(
+                @RequestBody Mastermind ms,
+                @PathVariable String msId,
+                @RequestParam(defaultValue = "false") boolean isUpSert
+
+    )throws IOException{
+        Mastermind result = null;
+        ms.setUpSert(isUpSert);
+        if(!isUpSert){
+            result = bgSvc.findById(msId);
+            if(result == null){
+                return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body("");
+            }
+        }
+        ms.setId(msId);
+        int updateCount = bgSvc.updateBoardGame(ms);
+        ms.setUpdateCount(updateCount);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(ms.toJSONUpdate().toString());
     }
 }

@@ -21,4 +21,8 @@ public class BoardGameService {
         throws IOException{
         return bgRepo.findById(msId);
     }
+
+    public int updateBoardGame(final Mastermind ms){
+        return bgRepo.updateBoardGame(ms);
+    }
 }

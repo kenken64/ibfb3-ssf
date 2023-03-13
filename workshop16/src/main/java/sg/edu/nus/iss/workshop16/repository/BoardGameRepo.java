@@ -31,4 +31,31 @@ public class BoardGameRepo {
         Mastermind m = Mastermind.create(jsonStrVal);
         return m;
     }
+
+    public int updateBoardGame(final Mastermind ms){
+        String result = (String)template
+                    .opsForValue().get(ms.getId());
+        if(ms.isUpSert()){
+            if(result != null){
+                template.opsForValue().set(ms.getId()
+                                , ms.toJSON().toString());
+            }else{
+                ms.setId(ms.generateId(8));
+                template.opsForValue()
+                            .setIfAbsent(ms.getId()
+                            ,ms.toJSON().toString());
+            }
+                
+        }else{
+            if(result != null){
+                template.opsForValue().set(ms.getId()
+                                , ms.toJSON().toString());
+            }
+        }
+
+        result = (String)template.opsForValue().get(ms.getId());
+        if(result != null)
+            return 1;
+        return 0;
+    }
 }
