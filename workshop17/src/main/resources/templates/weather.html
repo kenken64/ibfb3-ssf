@@ -16,13 +16,16 @@
         <br>
         <p data-th-text="*{temperature}"></p>
         <br>
-        <p data-th-text="*{#calendars.format(new java.util.Date(weatherTimeStamp))}"></p>
+        Weather Date time:
+        <p data-th-text="*{#dates.format(weatherTimeStamp * 1000, 'dd-MM-yyyy HH:mm:ss')}"></p>
         <br>
-        <p data-th-text="*{weatherTimeStamp}"></p>
+        Sunrise Date time:
+        <p data-th-text="*{#dates.format(sunriseTimeStamp * 1000, 'dd-MM-yyyy HH:mm:ss')}"></p>
         <br>
-        <p data-th-text="*{#calendars.format(new java.util.Date(sunriseTimeStamp))}"></p>
-        <br>
-        <p data-th-text="*{#calendars.format(new java.util.Date(sunsetTimeStamp))}"></p>
+        Sunset Date time:
+        <p data-th-text="*{sunsetTimeStamp}"></p>
+        
+        <p data-th-text="*{#dates.format(sunsetTimeStamp * 1000 , 'dd-MM-yyyy HH:mm:ss')}"></p>
         
     </div>
 </body>
