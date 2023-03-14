@@ -37,7 +37,10 @@ public class ShoppingCartController {
             model.addAttribute("cart", c);
             return "cart";
         }
-
+        if(null == c){
+            c = new Cart();
+            session.setAttribute("cart", c);
+        }
         c.addItemToCart(item);
         model.addAttribute("item", item);
         model.addAttribute("cart", c);
@@ -58,3 +61,4 @@ public class ShoppingCartController {
         return "cart";
     }
 }
+

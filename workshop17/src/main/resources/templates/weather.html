@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-th-object="${weather}">
+    <div class="container">
+        <img data-th-src="*{conditions.get(0).icon}"/>
+        <br>
+        <p data-th-text="*{city}"></p>
+        <br>
+        <p data-th-text="*{conditions.get(0).description}"></p>
+        <br>
+        <p data-th-text="*{temperature}"></p>
+        <br>
+        <p data-th-text="*{#calendars.format(new java.util.Date(weatherTimeStamp))}"></p>
+        <br>
+        <p data-th-text="*{weatherTimeStamp}"></p>
+        <br>
+        <p data-th-text="*{#calendars.format(new java.util.Date(sunriseTimeStamp))}"></p>
+        <br>
+        <p data-th-text="*{#calendars.format(new java.util.Date(sunsetTimeStamp))}"></p>
+        
+    </div>
+</body>
+</html>
