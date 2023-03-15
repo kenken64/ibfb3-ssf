@@ -1,0 +1,20 @@
+.pizza {
+	width: 12vw;
+}
+.thumbnail {
+	width: 20vw;
+}
+.title {
+	display: flex;
+	align-items: center;
+}
+.title>h2 {
+	font-size: 2em;
+}
+
+.error {
+	font-family: monospace;
+	color: red;
+	font-weight: bold;
+}
+
