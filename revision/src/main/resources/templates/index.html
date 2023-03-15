@@ -58,6 +58,14 @@
 								<input type="radio" name="pizza" value="trioformaggio" data-th-field="*{pizza}"> Trio Formaggio
 							</div>
 						</td>
+						<td>
+							<div>
+								<img src="/images/currychicken.jpg" class="pizza">
+							</div>
+							<div>
+								<input type="radio" name="pizza" value="currychicken" data-th-field="*{pizza}"> Curry Chicken
+							</div>
+						</td>
 					</tr>
 					<tr data-th-if="${#fields.hasErrors('pizza')}">
 						<td>
@@ -71,6 +79,7 @@
 								<option value="sm">Small</option>
 								<option value="md">Medium</option>
 								<option value="lg">Large</option>
+								<option value="xlg">Extra Large</option>
 							</select>
 							<div data-th-if="${#fields.hasErrors('size')}">
 								<span data-th-errors="*{size}" data-th-errorclass="error"></span>

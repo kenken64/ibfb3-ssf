@@ -85,7 +85,7 @@ public class Order implements Serializable{
                 .add("pizza", this.getPizzaName())
                 .add("size", this.getSize())
                 .add("quantity", this.getQuantity())
-                .add("totalCost", this.getTotalCost())
+                .add("total", this.getTotalCost())
                 .build();
     }
 }

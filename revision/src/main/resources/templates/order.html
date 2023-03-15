@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-th-object="${order}">
+    <h1>Delivery details</h1>
+    <table>
+        <tr>
+            <td>Order id: </td>
+            <td><a data-th-href="@{/order/{orderId}(orderId=${order.orderId})}"
+                data-th-text="*{orderId}"></a></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><span data-th-text="*{address}"></span></td>
+        </tr>
+
+        <tr>
+            <td>Pizza Cost:</td>
+            <td><span data-th-text="${order.getPizzaCost()}"></span></td>
+        </tr>
+        <tr data-th-if="${order.getRush()}">
+            <td>Rush:</td>
+            <td><span data-th-text="${order.getRush()}"></span></td>
+        </tr>
+        <tr>
+            <td>Total Cost:</td>
+            <td><span data-th-text="*{totalCost}"></span></td>
+        </tr>
+    </table>
+</body>
+</html>

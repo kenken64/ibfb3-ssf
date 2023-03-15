@@ -3,7 +3,6 @@ package sg.edu.nus.iss.revision.model;
 import java.io.Serializable;
 
 import jakarta.json.JsonObject;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -21,7 +20,7 @@ public class Delivery implements Serializable{
     private String address;
 
     @NotNull(message="Please state your phone number")
-    @Pattern(regexp="^(0-9)(8,)$", message="Must be a valid phone number")
+    @Pattern(regexp="^[0-9]{8,}$", message="Must be a valid phone number")
     private String phone;
 
     private boolean rush = false;
