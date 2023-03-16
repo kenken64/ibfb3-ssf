@@ -11,7 +11,7 @@
       <table border="1">
         <tr
           th:each="a, iStat : ${arr}"
-          th:style="${iStat.odd}? 'font-weight: bold;'"
+          th:style="${a.percentage > 70}? 'font-weight: bold;'"
           th:alt-title="${iStat.even}? 'even' : 'odd'"
         >
           <td th:text="${iStat.index+1}" />

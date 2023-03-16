@@ -10,7 +10,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
-public class LoverResult {
+public class LoverResult implements Comparable <LoverResult> {
     private String fname;
     private String sname;
     private Integer percentage;
@@ -91,6 +91,14 @@ public class LoverResult {
             w.setResult(o.getString("result"));
         }
         return w;
+    }
+
+    @Override
+    public int compareTo(LoverResult o) {
+        if(o.getPercentage() > 70){
+            return 1;
+        }
+        return -1;
     }
 
 }

@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.app.lovecalc.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,7 @@ public class LoveCalcController {
     @GetMapping(path = "/list")
     public String getAllLoveCompat(Model model) throws IOException {
         LoverResult[] mArr = lvSvc.getAllMatchMaking();
+        Arrays.sort(mArr);
         model.addAttribute("arr", mArr);
         return "list";
     }
