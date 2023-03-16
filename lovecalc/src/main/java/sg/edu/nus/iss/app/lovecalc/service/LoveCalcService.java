@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,33 +22,37 @@ import sg.edu.nus.iss.app.lovecalc.model.LoverResult;
 
 @Service
 public class LoveCalcService {
-    private static final String LOVE_CALC_API_URL = "https://love-calculator.p.rapidapi.com/getPercentage";
+    
+    @Value("${lovecalc.api.url}")
+    private String loveCalcApiUrl;
+    
+    @Value("${lovecalc.api.key}")
+    private String loveCalcApiKey;
+    
+    @Value("${lovecalc.api.host}")
+    private String loveCalcApiHost;
+    
 
-    @Autowired
+    @Autowired @Qualifier("lovecalc")
     RedisTemplate<String, Object> redisTemplate;
 
     public Optional<LoverResult> calcCompatibility(LoverResult rr)
             throws IOException {
         String finalLoveCalculatorUrl = UriComponentsBuilder
-                .fromUriString(LOVE_CALC_API_URL)
+                .fromUriString(loveCalcApiUrl)
                 .queryParam("fname", rr.getFname())
                 .queryParam("sname", rr.getSname())
                 .toUriString();
-        System.out.println(finalLoveCalculatorUrl);
         RestTemplate template = new RestTemplate();
         ResponseEntity<String> resp = null;
         HttpHeaders headers = new HttpHeaders();
-        String loverApiKey = System.getenv("LOVER_API_KEY");
-        String loverApiHost = System.getenv("LOVER_API_HOST");
-
-        headers.set("X-RapidAPI-Key", loverApiKey);
-        headers.set("X-RapidAPI-Host", loverApiHost);
+        
+        headers.set("X-RapidAPI-Key", loveCalcApiKey);
+        headers.set("X-RapidAPI-Host", loveCalcApiHost);
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
         resp = template.exchange(finalLoveCalculatorUrl, HttpMethod.GET,
                 requestEntity, String.class);
-        System.out.println(resp);
         LoverResult w = LoverResult.create(resp.getBody());
-        System.out.println(w);
         if (w != null) {
             redisTemplate.opsForValue().set(w.getId(), resp.getBody().toString());
             return Optional.of(w);

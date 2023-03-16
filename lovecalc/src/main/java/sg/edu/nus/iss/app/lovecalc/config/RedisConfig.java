@@ -32,7 +32,7 @@ public class RedisConfig {
     // define the return redis template bean as single Object
     // throughout the runtime.
     // Return the RedisTemplate
-    @Bean
+    @Bean("lovecalc")
     @Scope("singleton")
     public RedisTemplate<String, Object> redisTemplate() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
