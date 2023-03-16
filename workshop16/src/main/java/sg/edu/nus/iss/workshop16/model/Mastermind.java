@@ -99,8 +99,8 @@ public class Mastermind implements Serializable{
                 JsonReader r = Json.createReader(is);
                 JsonObject o = r.readObject();
                 m.setName(o.getString("name"));
-                JsonObject pieces = o.getJsonObject("pieces");
-                m.setPieces(Pieces.createJson(pieces));
+                //JsonObject pieces = o.getJsonObject("pieces");
+                m.setPieces(Pieces.createJson(o.getJsonObject("pieces")));
             }
         }
         return m;
