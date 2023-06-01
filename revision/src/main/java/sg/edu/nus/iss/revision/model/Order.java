@@ -47,7 +47,7 @@ public class Order implements Serializable{
     }
 
     public float getPizzaCost(){
-        return this.getRush() ?  this.getTotalCost() - 2 : this.getTotalCost();
+        return this.getRush() ?  this.getTotalCost() + 2 : this.getTotalCost();
     }
 
     public String getName() { return this.getDelivery().getName();}
